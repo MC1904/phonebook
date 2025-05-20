@@ -55,3 +55,70 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:3001/api/persons/1
+
+###
+
+GET https://phonebook-np55.onrender.com/api/persons
+
+###
+
+GET https://phonebook-np55.onrender.com/info
+
+###
+
+GET https://phonebook-np55.onrender.com/api/persons/1
+
+###
+
+GET https://phonebook-np55.onrender.com/api/persons/5
+
+###
+
+POST https://phonebook-np55.onrender.com/api/persons
+Content-Type: application/json
+
+{
+    "name": "",
+    "number": "1234"
+}
+
+###
+
+POST https://phonebook-np55.onrender.com/api/persons
+Content-Type: application/json
+
+{
+    "name": "test",
+    "number": ""
+}
+
+###
+
+POST https://phonebook-np55.onrender.com/api/persons
+Content-Type: application/json
+
+{
+    "name": "Arto Hellas",
+    "number": "1234"
+}
+
+###
+
+POST https://phonebook-np55.onrender.com/api/persons
+Content-Type: application/json
+
+{
+    "name": "Tralelo Tralala",
+    "number": "1234"
+}
+
+###
+
+DELETE https://phonebook-np55.onrender.com/api/persons/9
+
+###
+
+
+
+
+

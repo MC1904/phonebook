@@ -1,5 +1,5 @@
 import axios from 'axios'
-const db = 'http://localhost:3001/api/persons'
+const db = '/api/persons'
 
 const getAll = () => {
     const response = axios.get(db)
