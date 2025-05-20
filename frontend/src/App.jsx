@@ -76,15 +76,12 @@ const App = () => {
     }
     else {
       const newPerson = {name: newName, number: newNumber}
-      console.log("person added")
       personService
         .add(newPerson)
         .then(returnedPerson => setPersons(persons.concat(returnedPerson)))
-        setNewName('')
+      setNewName('')
       setNewNumber('')
       setMessage(`added ${newPerson.name}`)
-      console.log(newPerson.name)
-      console.log(message)
       setTimeout(() => setMessage(null),5000)
     }
   }
@@ -94,7 +91,7 @@ const App = () => {
         const removeid = person.id
         personService
           .remove(removeid)
-          .then(remove => setPersons(persons.filter(person => person.id !== remove.id)))
+          .then(setPersons(persons.filter(person => person.id !== removeid)))
         setMessage(`deleted ${person.name}`)
         setTimeout(() => setMessage(null),5000)
         }

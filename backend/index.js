@@ -1,7 +1,9 @@
 const express = require('express')
+const cors = require('cors')
 var morgan = require('morgan')
 const app = express()
 app.use(express.json())
+app.use(cors())
 
 morgan.token('post', function (req, res) { 
     return (
@@ -9,32 +11,9 @@ morgan.token('post', function (req, res) {
     )
 })
 
-// morgan(function (tokens, req, res) {
-//     if (tokens.method === POST) {
-//         return [
-//             tokens.method(req, res),
-//             tokens.url(req, res),
-//             tokens.status(req, res),
-//             tokens.res(req, res, 'content-length'), '-',
-//             tokens['response-time'](req, res), 'ms', 
-//             tokens.post(req,res)
-//         ].join(' ')
-//     }
-  
-//     return [
-//     tokens.method(req, res),
-//     tokens.url(req, res),
-//     tokens.status(req, res),
-//     tokens.res(req, res, 'content-length'), '-',
-//     tokens['response-time'](req, res), 'ms'
-//   ].join(' ')
-// })
-
-
-
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :post'))
 
-const persons = [
+let persons = [
     { 
       "id": "1",
       "name": "Arto Hellas", 
@@ -86,6 +65,13 @@ app.get('/api/persons/:id', (request,response) => {
     }
 })
 
+app.delete('/api/persons/:id', (request, response) => {
+  const id = request.params.id
+  persons = persons.filter(note => note.id !== id)
+
+  response.status(204).end()
+})
+
 const generateID = () => {
     const newID = Math.floor(Math.random() * 100)
     const check = persons.find(person => person.id === newID)
@@ -124,7 +110,7 @@ app.post('/api/persons', (request,response) => {
         "id": String(generateID())
     }
 
-    persons.concat(newPerson)
+    persons = persons.concat(newPerson)
 
     response.json(newPerson)
 })

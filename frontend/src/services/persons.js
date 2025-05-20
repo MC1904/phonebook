@@ -1,5 +1,5 @@
 import axios from 'axios'
-const db = 'http://localhost:3001/persons'
+const db = 'http://localhost:3001/api/persons'
 
 const getAll = () => {
     const response = axios.get(db)
@@ -13,7 +13,7 @@ const add = (newPerson) => {
 
 const remove = (id) => {
     const response = axios.delete(`${db}/${id}`)
-    return (response.then(response => response.data))
+    return (response)
 }
 
 const changenumber = (newPerson) => {
